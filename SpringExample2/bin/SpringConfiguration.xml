@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean class="com.examples.MyInfo" name="myInfo">
+		<property name="infoMessage" value="This is my info.">
+		</property>
+	</bean>
+	
+	<bean class="com.examples.AbhiInfo" name="abhiInfo">
+		<constructor-arg name="infoMessage" value="Hello World! Abhishek is here."></constructor-arg>
+	</bean>
+	
+	<bean class="com.examples.UserDetails" name="userDetails">
+		<constructor-arg name="info" ref="myInfo"></constructor-arg>
+	</bean>
+	
+	<bean class="com.examples.UserDetails" name="abhiDetails">
+		<constructor-arg name="info" ref="abhiInfo"></constructor-arg>
+	</bean>
+</beans>
