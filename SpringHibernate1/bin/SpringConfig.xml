@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+
+	<bean class="org.apache.commons.dbcp.BasicDataSource" name="datasource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost/springHbDb"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value=""></property>
+	</bean>
+	
+	<bean class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" name="localSessionFactoryBean">
+		<property name="dataSource" ref="datasource"></property>
+		<property name="annotatedClasses">
+			<list>
+				<value>com.example.model.Student</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="com.example.dao.StudentDaoImpl" name="studentDaoImpl">
+		<property name="sessionFactory" ref="localSessionFactoryBean"></property>
+	</bean>
+	
+	<bean class="com.example.model.Student" name="student"></bean>
+</beans>
